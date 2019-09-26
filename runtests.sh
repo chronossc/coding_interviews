@@ -1,3 +1,9 @@
 export PYTHONPATH="$(realpath .):$PYTHONPATH"
 echo $PYTHONPATH
-python3 -m pytest -vv $(find -name 'tests.py')
+
+if [ $# -eq 0 ];then
+  args="$(find -name 'tests.py')"
+else
+  args="$@"
+fi
+python3 -m pytest -v $args
